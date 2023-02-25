@@ -1,0 +1,40 @@
+---
+title: "Exploring *Fruits* with plotly"
+author: "Doris"
+date: "2023-02-24"
+output: ioslides_presentation
+---
+
+## Loading data and packages  
+
+```{r, message=FALSE}
+library(plotly)
+library(tidyverse)
+library(googleVis)
+data("Fruits")
+```
+
+## Profit Trends
+  
+```{r, echo=FALSE}
+with(Fruits, plot_ly(x=factor(Year), y=Profit, color=Fruit, type="scatter", mode="lines")) %>% 
+        layout(xaxis=list(title="Year"), yaxis=list(title="Profit"))
+```
+  
+## Sales & Profit
+  
+```{r, echo=FALSE}
+p <- ggplot(data=Fruits)+
+        geom_point(aes(x=Sales, y=Profit, color=Fruit))+
+        labs(x="Sales", y="Profit")+
+        facet_wrap(~ Location)
+
+ggplotly(p)
+```
+  
+*** 
+  
+<div class="centered">    
+Thank You!
+</div>  
+  
